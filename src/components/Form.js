@@ -1,38 +1,72 @@
 import React from 'react';
-
-class Form extends React.Component {
+import { Form, Row, Col, Button } from 'react-bootstrap';
+class SignUp extends React.Component {
     render() {
         return (
             <div className='form'>
-                <form onSubmit={this.props.handleSubmit}>
-                    <h2 className="text-center">CREATE NEW USER</h2>
-                    <div className="form-group">
-                        <input type="text" className="form-control" id="name" placeholder="enter username" value={this.props.name} onChange={this.props.handleChange} required />
-                    </div>
+                <Form onSubmit={this.props.handleSubmit}>
+                    <h2 className="text-center">CREATE NEW ACCOUNT</h2>
 
-                    <div className="form-group">
-                        <input type="text" className="form-control" id="gender" placeholder="enter gender" value={this.props.gender} onChange={this.props.handleChange} required />
-                    </div>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>Email</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="email" placeholder="Enter email" id="email" value={this.props.email} onChange={this.props.handleChange} />
+                        </Col>
+                    </Form.Group>
 
-                    <div className="form-group">
-                        <input type="number" className="form-control" id="age" placeholder="your age" value={this.props.age} onChange={this.props.handleChange} required />
-                    </div>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>UserName</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="string" placeholder="Enter user name" id="userName" value={this.props.userName} onChange={this.props.handleChange} />
+                        </Col>
+                    </Form.Group>
 
-                    <div className="form-group">
-                        <input type="text" className="form-control" id="occupation" placeholder="enter occupation" value={this.props.occupation} onChange={this.props.handleChange} required />
-                    </div>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>Age</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="number" id="age" value={this.props.age} onChange={this.props.handleChange} />
+                        </Col>
+                    </Form.Group>
 
-                    <div className="form-group">
-                        <input type="text" className="form-control" id="location" placeholder="enter location" value={this.props.location} onChange={this.props.handleChange} required />
-                    </div>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>Location</Form.Label>
+                        <Col sm={10}>
+                            <input type="text" name="name" list="countries" value={this.props.location} placeholder="Enter your location" id="location" onChange={this.props.handleChange} />
+                            <datalist id="countries">
+                                {this.props.countries ?
+                                    this.props.countries.map(country => {
+                                        return (
+                                            <option>{country.name}</option>
+                                        )
+                                    }) : ''}
+                            </datalist>
+                        </Col>
+                    </Form.Group>
 
-                    <div className="form-group">
-                        <input type="text" className="form-control" id="image" placeholder="enter image url" value={this.props.image} onChange={this.props.handleChange} required />
-                    </div>
+                    <Form.Check inline label="Female" id="female" checked={this.props.female} onChange={this.props.toggleGender} />
+                    <Form.Check inline label="Male" id="male" checked={this.props.male} onChange={this.props.toggleGender} />
 
-                    <input type="submit" className="btn btn-success form-control" value="SUBMIT" />
-                </form>
+                    <Form.Group as={Row} encType="multipart/form-data">
+                        <Form.Label column sm={2}>Avatar</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="file" onChange={this.props.handleChange} id="image"/>
+                        </Col>
+                    </Form.Group>
 
+                    <Form.Group as={Row}>
+                        <Form.Label column sm={2}>Password</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="password" placeholder="Password" id="password" value={this.props.password} onChange={this.props.handleChange} />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Button variant="primary" type="submit">
+                            Submit
+                    </Button>
+                    </Form.Group>
+
+                </Form>
                 <div className="title">
                     <h2>FIND YOUR LOVE</h2>
                 </div>
@@ -42,6 +76,4 @@ class Form extends React.Component {
     }
 }
 
-
-
-export default Form
+export default SignUp

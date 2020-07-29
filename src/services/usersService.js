@@ -1,4 +1,6 @@
 import apiUtil from '../utils/api';
+import imageApiUtil from '../utils/imageApi';
+
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000'
 const buildUrl = apiPath => {
     return BACKEND_URL + apiPath;
@@ -28,6 +30,11 @@ export default {
         const response = await apiUtil.update(buildUrl(`/${id}`),
             isCompleted,
         );
+        return response.data;
+    },
+    async uploadImage (formData) {
+        const response = await imageApiUtil.post(buildUrl('/avatar-upload'), formData);
+        console.log(response);
         return response.data;
     }
 };

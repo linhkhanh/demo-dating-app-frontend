@@ -11,20 +11,30 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            gender: '',
-            age: 0,
+            email: '',
+            userName: '',
+            age: 18,
             image: '',
-            occupation: '',
             location: '',
-            position: '',
+            password: '',
+            female: false,
+            male: true,
             users: []
         }
     }
 
     // handle Change
     handleChange = (event) => {
-        this.setState({ [event.target.id]: event.target.value });
+        event.target.id !== "image" ? this.setState({ [event.target.id]: event.target.value })
+            : this.setState({ [event.target.id]: event.target.files });
+    }
+
+    // toggleGender
+    toggleGender = () => {
+        this.setState({
+            female: !this.state.female,
+            male: !this.state.male
+        });
     }
 
     // GET LOCATION
@@ -36,113 +46,94 @@ class App extends Component {
         }
     }
 
-    // GET POSITION
+    // GET POSITION AND CREATE NEW USER
     showPosition = async (position) => {
-        console.log("Latitude: " + position.coords.latitude + ", " +
-            "Longitude: " + position.coords.longitude);
+        // get position
         this.setState({
             position: {
                 lat: position.coords.latitude,
                 long: position.coords.longitude
             }
         });
-        console.log(this.state.position);
+
+        // upload Image
+
+        const file = Array.from(this.state.image)[0];
+
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        const image = await usersService.uploadImage(formData);
+        this.setState({
+            image: image.url
+        })
+
+        // set information of new account
         const newOne = {
-            name: this.state.name,
-            gender: this.state.gender,
+            email: this.state.email,
+            userName: this.state.userName,
             age: parseInt(this.state.age),
             image: this.state.image,
-            occupation: this.state.occupation,
             location: this.state.location,
             position: this.state.position,
+            password: this.state.password,
             isEditing: false
         };
+
+        // set gender
+        this.state.female ? newOne.gender = "Female" : newOne.gender = "Male";
         console.log(newOne);
+
+        // add newData to db
         const newData = await usersService.create(newOne);
 
         this.setState({
-            name: '',
-            gender: '',
-            age: 0,
+            email: '',
+            userName: '',
+            age: 18,
             image: '',
-            occupation: '',
             location: '',
-            position: '',
+            password: '',
+            female: false,
+            male: true,
             users: [newData, ...this.state.users]
         });
     }
 
+    // UPLOAD IMAGE
+    async uploadImage() {
 
+    }
     // handle submit
     handleSubmit = (event) => {
         event.preventDefault();
-
         this.getLocation();
-
     }
 
-    toggleEdit = (event) => {
-        const index = event.currentTarget.id;
-        console.log(event.target);
-        const users = this.state.users;
-        this.setState({
-            name: users[index].name,
-            gender: users[index].gender,
-            age: users[index].age,
-            location: users[index].location,
-            occupation: users[index].occupation,
-            image: users[index].image
-        })
-        users[index].isEditing = true;
-        this.setState({
-            users: users
-        });
-
-    }
     //  Fetch data
     async fetchUsers() {
         const users = await usersService.getAll();
         this.setState({ users: users });
         console.log(users);
     }
+
+    // Get all countries
+    getAllCountries = () => {
+        const allCountries = [];
+        for (let key in countries.countries) {
+            allCountries.push(countries.countries[key]);
+        }
+        allCountries.sort((item1, item2) => item1.name - item2.name);
+        this.setState({
+            countries: allCountries
+        })
+    }
     // Show data
     componentDidMount() {
         this.fetchUsers();
         console.log(countries.countries);
-    }
-
-    // edit data
-    save = async (event) => {
-        event.preventDefault();
-        const id = event.target.id;
-        const users = this.state.animal;
-
-        const index = users.findIndex(item => item._id === id);
-        console.log(index);
-
-        const updatedData = {
-            _id: id,
-            name: this.state.name,
-            gender: this.state.gender,
-            age: parseInt(this.state.age),
-            image: this.state.image,
-            occupation: this.state.occupation,
-            location: this.state.location,
-            isEditing: false
-        }
-
-        users[index] = updatedData;
-        console.log(users);
-        this.setState({
-            name: '',
-            gender: '',
-            age: 0,
-            image: '',
-            occupation: '',
-            location: '',
-            users: users
-        });
-        await usersService.updateCompletionStatus(id, updatedData);
+        this.getAllCountries();
     }
 
     // delete data
@@ -183,15 +174,20 @@ class App extends Component {
     }
 
     render() {
-        const { name, gender, age, location, occupation, image } = this.state;
+        const { userName, email, age, location, image, password, female, male, countries } = this.state;
         return (
             <React.Fragment >
                 <Header />
-                <Form name={name}
-                    gender={gender} age={age}
-                    occupation={occupation} location={location} image={image}
+                <Form userName={userName}
+                    email={email} age={age}
+                    location={location} image={image}
+                    password={password}
+                    female={female}
+                    male={male}
+                    countries={countries}
 
                     handleChange={this.handleChange}
+                    toggleGender={this.toggleGender}
                     handleSubmit={this.handleSubmit} />
 
                 <Table users={this.state.users} delete={this.deleteData} />

@@ -18,6 +18,8 @@ class Header extends React.Component {
                         <li><a href="#">SAY HELLO</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">USERS</a></li>
+                        <li>LOG IN</li>
+                        <li>SIGN UP</li>
                     </ul>
                 </nav>
 
