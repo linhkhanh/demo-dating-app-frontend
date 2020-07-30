@@ -5,7 +5,7 @@ class Footer extends React.Component {
             <div className='footer'>
                 <p>FOLLOW US ON INSTAGRAM</p>
                 <p>#findyourlove</p>
-                <p>App is built by MRL Group</p>
+                <p>App is built by RML Group</p>
             </div>
         )
     }
