@@ -11,7 +11,7 @@ class Table extends Component {
                                 <div className="card">
                                     <img src={user.image} className="card-img-top" alt="user image" />
                                     <div class="card-body">
-                                        <h5 class="card-title">{user.name}</h5>
+                                        <h5 class="card-title">{user.userName}</h5>
                                         <p class="card-text">{user.age}</p>
                                         <p class="card-text">{user.gender}</p>
                                         <p class="card-text">{user.location}</p>
