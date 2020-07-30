@@ -3,7 +3,9 @@ const executeApiCall = async (method, url, body) => {
     if (body) payload.body = JSON.stringify(body);
 
     const response = await fetch(url, {
-        method,
+        method: method,
+        credentials: 'include',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
         },

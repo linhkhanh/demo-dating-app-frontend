@@ -18,8 +18,17 @@ class Header extends React.Component {
                         <li><a href="#">SAY HELLO</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">USERS</a></li>
-                        <li>LOG IN</li>
-                        <li>SIGN UP</li>
+                        {!this.props.isLogIn ?
+                            <React.Fragment>
+                                <li><a href="#login">LOG IN</a></li>
+                                <li><a href="#signup">SIGN UP</a></li>
+                            </React.Fragment>
+                            : <React.Fragment>
+                                <li>{this.props.userName}</li>
+                                <li onClick={this.props.logOut}>LOG OUT</li>
+                            </React.Fragment>
+                        }
+
                     </ul>
                 </nav>
 

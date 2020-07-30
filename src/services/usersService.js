@@ -9,9 +9,8 @@ const buildUrl = apiPath => {
 export default {
     async getAll () {
         try {
-            console.log(buildUrl('/'));
             const response = await apiUtil.get(buildUrl('/'));
-            console.log(response);
+            console.log(response.data);
             return response.data;
         } catch (err) {
             console.log(err);
@@ -34,7 +33,6 @@ export default {
     },
     async uploadImage (formData) {
         const response = await imageApiUtil.post(buildUrl('/avatar-upload'), formData);
-        console.log(response);
         return response.data;
     }
 };
