@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Header from './components/Header';
 import Signup from './components/Signup';
+import Login from './components/Login';
 import ListUsers from './components/ListUsers';
 import Footer from './components/Footer';
 import usersService from './services/usersService';
+import sessionService from './services/session';
 import './App.css';
 import countries from "countries-list";
 
@@ -11,6 +13,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            // Sign up
             email: '',
             userName: '',
             age: 18,
@@ -23,6 +26,11 @@ class App extends Component {
             lookingForMale: false,
             lookingForAgeFrom: 18,
             lookingForAgeTo: 30,
+            // authentication
+            currentEmail: '',
+            currentPassword: '',
+            currentUser: '',
+            isLogIn: false,
             users: []
         }
     }
@@ -82,8 +90,7 @@ class App extends Component {
             location: '',
             password: '',
             female: false,
-            male: true,
-            users: [newData, ...this.state.users]
+            male: true
         });
     }
 
@@ -95,8 +102,8 @@ class App extends Component {
             image: image.url
         })
 
-         // set information of new account
-         const newOne = {
+        // set information of new account
+        const newOne = {
             email: this.state.email,
             userName: this.state.userName,
             age: parseInt(this.state.age),
@@ -104,8 +111,7 @@ class App extends Component {
             location: this.state.location,
             lookingForAgeFrom: this.state.lookingForAgeFrom,
             lookingForAgeTo: this.state.lookingForAgeTo,
-            password: this.state.password,
-            isEditing: false
+            password: this.state.password
         };
 
         // set gender
@@ -116,7 +122,7 @@ class App extends Component {
     }
 
     // UPLOAD IMAGE
-     uploadImage = async () => {
+    uploadImage = async () => {
         const file = Array.from(this.state.image)[0];
 
         const formData = new FormData();
@@ -127,6 +133,7 @@ class App extends Component {
 
         return image
     }
+
     // handle submit
     handleSubmit = (event) => {
         event.preventDefault();
@@ -134,10 +141,10 @@ class App extends Component {
     }
 
     //  Fetch Users
-    async fetchUsers() {
+    fetchUsers = async () => {
         const users = await usersService.getAll();
         this.setState({ users: users });
-        console.log(users);
+        return users;
     }
 
     // Get all countries
@@ -152,7 +159,6 @@ class App extends Component {
     }
     // Show data
     componentDidMount() {
-        this.fetchUsers();
         this.getAllCountries();
     }
 
@@ -170,6 +176,33 @@ class App extends Component {
         })
     }
 
+    // LOG IN
+    logIn = async (event) => {
+        event.preventDefault();
+        const user = {
+            email: this.state.currentEmail,
+            password: this.state.currentPassword
+        };
+        const currentUser = await sessionService.logIn(user);
+     
+        const users = await this.fetchUsers();
+        this.setState({
+            currentEmail: '',
+            currentPassword: '',
+            isLogIn: true,
+            currentUser: currentUser,
+            users: users
+        })
+    }
+
+    logOut = async () => {
+        await sessionService.logOut();
+        this.setState({
+            isLogIn: false,
+            currentUser: '',
+            users: []
+        })
+    }
     // CALCULATE DISTANCE
     distance(lat1, lon1, lat2, lon2, unit) {
         if ((lat1 === lat2) && (lon1 === lon2)) {
@@ -194,10 +227,18 @@ class App extends Component {
     }
 
     render() {
-        const { userName, email, age, location, image, password, female, male, countries, lookingForAgeFrom, lookingForAgeTo, lookingForFemale, lookingForMale } = this.state;
+        const { userName, email, age, location,
+            image, password, female, male, countries,
+            lookingForAgeFrom, lookingForAgeTo, lookingForFemale,
+            lookingForMale, currentEmail, currentPassword, isLogIn } = this.state;
         return (
             <React.Fragment >
-                <Header />
+                <Header userName={this.state.currentUser.userName}
+                    isLogIn={this.state.isLogIn}
+                    logOut={this.logOut}
+                />
+
+                {/* SIGN UP */}
                 <Signup userName={userName}
                     email={email} age={age}
                     location={location} image={image}
@@ -209,13 +250,23 @@ class App extends Component {
                     lookingForAgeTo={lookingForAgeTo}
                     lookingForFemale={lookingForFemale}
                     lookingForMale={lookingForMale}
+                    isLogIn={isLogIn}
 
                     handleChange={this.handleChange}
                     toggleGender={this.toggleGender}
                     handleSubmit={this.handleSubmit}
                     toggleLookingForGender={this.toggleLookingForGender}
-                    />
+                />
 
+                {/* LOG IN */}
+                <Login currentEmail={currentEmail}
+                    currentPassword={currentPassword}
+                    handleChange={this.handleChange}
+                    logIn={this.logIn}
+                    isLogIn={isLogIn}
+                />
+
+                {/* ALL USERS */}
                 <ListUsers users={this.state.users} delete={this.deleteData} />
 
                 <Footer />

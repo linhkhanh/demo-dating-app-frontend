@@ -36,7 +36,7 @@ nav {
 /* end */
 
 /* form */
-.form {
+.signup {
   background-image: url('https://miro.medium.com/max/3760/1*OEnS6-DEn56szCwdOs2mrA.jpeg');
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -49,7 +49,7 @@ nav {
   margin-bottom: 2%;
 }
 
-form {
+#signup {
   width: 50%;
 }
 
