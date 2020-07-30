@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/demo-dating-app-frontend/static/css/main.8c7a9dd5.chunk.css",
-    "main.js": "/demo-dating-app-frontend/static/js/main.6afa5456.chunk.js",
-    "main.js.map": "/demo-dating-app-frontend/static/js/main.6afa5456.chunk.js.map",
+    "main.js": "/demo-dating-app-frontend/static/js/main.cbc90648.chunk.js",
+    "main.js.map": "/demo-dating-app-frontend/static/js/main.cbc90648.chunk.js.map",
     "runtime-main.js": "/demo-dating-app-frontend/static/js/runtime-main.0a86c614.js",
     "runtime-main.js.map": "/demo-dating-app-frontend/static/js/runtime-main.0a86c614.js.map",
-    "static/js/2.5b09b958.chunk.js": "/demo-dating-app-frontend/static/js/2.5b09b958.chunk.js",
-    "static/js/2.5b09b958.chunk.js.map": "/demo-dating-app-frontend/static/js/2.5b09b958.chunk.js.map",
+    "static/js/2.71a3ccfb.chunk.js": "/demo-dating-app-frontend/static/js/2.71a3ccfb.chunk.js",
+    "static/js/2.71a3ccfb.chunk.js.map": "/demo-dating-app-frontend/static/js/2.71a3ccfb.chunk.js.map",
     "index.html": "/demo-dating-app-frontend/index.html",
-    "precache-manifest.9433dd828f8c71325d08212db1f7674a.js": "/demo-dating-app-frontend/precache-manifest.9433dd828f8c71325d08212db1f7674a.js",
+    "precache-manifest.d2c2819d3c88f86b9abd593d6639f675.js": "/demo-dating-app-frontend/precache-manifest.d2c2819d3c88f86b9abd593d6639f675.js",
     "service-worker.js": "/demo-dating-app-frontend/service-worker.js",
     "static/css/main.8c7a9dd5.chunk.css.map": "/demo-dating-app-frontend/static/css/main.8c7a9dd5.chunk.css.map",
-    "static/js/2.5b09b958.chunk.js.LICENSE.txt": "/demo-dating-app-frontend/static/js/2.5b09b958.chunk.js.LICENSE.txt"
+    "static/js/2.71a3ccfb.chunk.js.LICENSE.txt": "/demo-dating-app-frontend/static/js/2.71a3ccfb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0a86c614.js",
-    "static/js/2.5b09b958.chunk.js",
+    "static/js/2.71a3ccfb.chunk.js",
     "static/css/main.8c7a9dd5.chunk.css",
-    "static/js/main.6afa5456.chunk.js"
+    "static/js/main.cbc90648.chunk.js"
   ]
 }
