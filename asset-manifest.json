@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/demo-dating-app-frontend/static/css/main.d0326aab.chunk.css",
-    "main.js": "/demo-dating-app-frontend/static/js/main.f79f5615.chunk.js",
-    "main.js.map": "/demo-dating-app-frontend/static/js/main.f79f5615.chunk.js.map",
+    "main.css": "/demo-dating-app-frontend/static/css/main.4db61131.chunk.css",
+    "main.js": "/demo-dating-app-frontend/static/js/main.bbce5a63.chunk.js",
+    "main.js.map": "/demo-dating-app-frontend/static/js/main.bbce5a63.chunk.js.map",
     "runtime-main.js": "/demo-dating-app-frontend/static/js/runtime-main.0a86c614.js",
     "runtime-main.js.map": "/demo-dating-app-frontend/static/js/runtime-main.0a86c614.js.map",
-    "static/js/2.71a3ccfb.chunk.js": "/demo-dating-app-frontend/static/js/2.71a3ccfb.chunk.js",
-    "static/js/2.71a3ccfb.chunk.js.map": "/demo-dating-app-frontend/static/js/2.71a3ccfb.chunk.js.map",
+    "static/js/2.619ea2aa.chunk.js": "/demo-dating-app-frontend/static/js/2.619ea2aa.chunk.js",
+    "static/js/2.619ea2aa.chunk.js.map": "/demo-dating-app-frontend/static/js/2.619ea2aa.chunk.js.map",
     "index.html": "/demo-dating-app-frontend/index.html",
-    "precache-manifest.958b15d9e4958212e2a9d780c689f4be.js": "/demo-dating-app-frontend/precache-manifest.958b15d9e4958212e2a9d780c689f4be.js",
+    "precache-manifest.0ee7f576ba51f41f11b4c7f3f67b22e7.js": "/demo-dating-app-frontend/precache-manifest.0ee7f576ba51f41f11b4c7f3f67b22e7.js",
     "service-worker.js": "/demo-dating-app-frontend/service-worker.js",
-    "static/css/main.d0326aab.chunk.css.map": "/demo-dating-app-frontend/static/css/main.d0326aab.chunk.css.map",
-    "static/js/2.71a3ccfb.chunk.js.LICENSE.txt": "/demo-dating-app-frontend/static/js/2.71a3ccfb.chunk.js.LICENSE.txt"
+    "static/css/main.4db61131.chunk.css.map": "/demo-dating-app-frontend/static/css/main.4db61131.chunk.css.map",
+    "static/js/2.619ea2aa.chunk.js.LICENSE.txt": "/demo-dating-app-frontend/static/js/2.619ea2aa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0a86c614.js",
-    "static/js/2.71a3ccfb.chunk.js",
-    "static/css/main.d0326aab.chunk.css",
-    "static/js/main.f79f5615.chunk.js"
+    "static/js/2.619ea2aa.chunk.js",
+    "static/css/main.4db61131.chunk.css",
+    "static/js/main.bbce5a63.chunk.js"
   ]
 }
