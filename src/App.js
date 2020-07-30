@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './components/Header';
-import Form from './components/Form';
-import Table from './components/Table';
+import Signup from './components/Signup';
+import ListUsers from './components/ListUsers';
 import Footer from './components/Footer';
 import usersService from './services/usersService';
 import './App.css';
@@ -19,6 +19,10 @@ class App extends Component {
             password: '',
             female: false,
             male: true,
+            lookingForFemale: true,
+            lookingForMale: false,
+            lookingForAgeFrom: 18,
+            lookingForAgeTo: 30,
             users: []
         }
     }
@@ -33,10 +37,17 @@ class App extends Component {
     toggleGender = () => {
         this.setState({
             female: !this.state.female,
-            male: !this.state.male
+            male: !this.state.male,
         });
     }
 
+    // toggle LookingForGender
+    toggleLookingForGender = () => {
+        this.setState({
+            lookingForFemale: !this.state.lookingForFemale,
+            lookingForMale: !this.state.lookingForMale
+        })
+    }
     // GET LOCATION
     getLocation = () => {
         if (navigator.geolocation) {
@@ -56,34 +67,9 @@ class App extends Component {
             }
         });
 
-        // upload Image
+        const newOne = await this.createNewUser();
 
-        const file = Array.from(this.state.image)[0];
-
-        const formData = new FormData();
-
-        formData.append('file', file);
-
-        const image = await usersService.uploadImage(formData);
-        this.setState({
-            image: image.url
-        })
-
-        // set information of new account
-        const newOne = {
-            email: this.state.email,
-            userName: this.state.userName,
-            age: parseInt(this.state.age),
-            image: this.state.image,
-            location: this.state.location,
-            position: this.state.position,
-            password: this.state.password,
-            isEditing: false
-        };
-
-        // set gender
-        this.state.female ? newOne.gender = "Female" : newOne.gender = "Male";
-        console.log(newOne);
+        newOne.position = this.state.position; // add user's position
 
         // add newData to db
         const newData = await usersService.create(newOne);
@@ -101,9 +87,45 @@ class App extends Component {
         });
     }
 
-    // UPLOAD IMAGE
-    async uploadImage() {
+    // CREATE NEW USER
+    createNewUser = async () => {
+        const image = await this.uploadImage();
 
+        this.setState({
+            image: image.url
+        })
+
+         // set information of new account
+         const newOne = {
+            email: this.state.email,
+            userName: this.state.userName,
+            age: parseInt(this.state.age),
+            image: this.state.image,
+            location: this.state.location,
+            lookingForAgeFrom: this.state.lookingForAgeFrom,
+            lookingForAgeTo: this.state.lookingForAgeTo,
+            password: this.state.password,
+            isEditing: false
+        };
+
+        // set gender
+        this.state.female ? newOne.gender = "Female" : newOne.gender = "Male";
+        this.state.lookingForFemale ? newOne.lookingForGender = "Female" : newOne.lookingForGender = "Male";
+
+        return newOne
+    }
+
+    // UPLOAD IMAGE
+     uploadImage = async () => {
+        const file = Array.from(this.state.image)[0];
+
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        const image = await usersService.uploadImage(formData);
+
+        return image
     }
     // handle submit
     handleSubmit = (event) => {
@@ -111,7 +133,7 @@ class App extends Component {
         this.getLocation();
     }
 
-    //  Fetch data
+    //  Fetch Users
     async fetchUsers() {
         const users = await usersService.getAll();
         this.setState({ users: users });
@@ -124,7 +146,6 @@ class App extends Component {
         for (let key in countries.countries) {
             allCountries.push(countries.countries[key]);
         }
-        allCountries.sort((item1, item2) => item1.name - item2.name);
         this.setState({
             countries: allCountries
         })
@@ -132,7 +153,6 @@ class App extends Component {
     // Show data
     componentDidMount() {
         this.fetchUsers();
-        console.log(countries.countries);
         this.getAllCountries();
     }
 
@@ -174,23 +194,29 @@ class App extends Component {
     }
 
     render() {
-        const { userName, email, age, location, image, password, female, male, countries } = this.state;
+        const { userName, email, age, location, image, password, female, male, countries, lookingForAgeFrom, lookingForAgeTo, lookingForFemale, lookingForMale } = this.state;
         return (
             <React.Fragment >
                 <Header />
-                <Form userName={userName}
+                <Signup userName={userName}
                     email={email} age={age}
                     location={location} image={image}
                     password={password}
                     female={female}
                     male={male}
                     countries={countries}
+                    lookingForAgeFrom={lookingForAgeFrom}
+                    lookingForAgeTo={lookingForAgeTo}
+                    lookingForFemale={lookingForFemale}
+                    lookingForMale={lookingForMale}
 
                     handleChange={this.handleChange}
                     toggleGender={this.toggleGender}
-                    handleSubmit={this.handleSubmit} />
+                    handleSubmit={this.handleSubmit}
+                    toggleLookingForGender={this.toggleLookingForGender}
+                    />
 
-                <Table users={this.state.users} delete={this.deleteData} />
+                <ListUsers users={this.state.users} delete={this.deleteData} />
 
                 <Footer />
             </React.Fragment >
