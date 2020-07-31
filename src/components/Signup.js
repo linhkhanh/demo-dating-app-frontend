@@ -6,7 +6,7 @@ class SignUp extends React.Component {
     render() {
         return (
             <div>
-                {this.props.redirect === "/demo-dating-app-frontend" ?
+                {this.props.redirect === "/" ?
                     <Form onSubmit={this.props.handleSubmit} id="signup">
                         <h2 className="text-center h2">CREATE NEW ACCOUNT</h2>
 

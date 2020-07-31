@@ -2,7 +2,7 @@
 body {
   background-color: #fffdfb;
   font-family: 'Barlow', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* header */
@@ -43,7 +43,7 @@ nav {
   background-size: cover; /* */
   color: #fffdfb;
   opacity: 0.7;
-  min-height: 500px;
+  min-height: 700px;
   padding-bottom: 5%;
 }
 

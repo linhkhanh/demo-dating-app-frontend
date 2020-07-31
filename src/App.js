@@ -25,7 +25,7 @@ class App extends Component {
             lookingForAgeFrom: 18,
             lookingForAgeTo: 30,
 
-            redirect: '/demo-dating-app-frontend',
+            redirect: '/',
             // authentication
             currentEmail: '',
             currentPassword: '',
@@ -91,7 +91,7 @@ class App extends Component {
             password: '',
             female: false,
             male: true,
-            redirect: '/demo-dating-app-frontend/login'
+            redirect: '/login'
         });
     }
 
@@ -192,7 +192,7 @@ class App extends Component {
             currentPassword: '',
             isLogIn: true,
             currentUser: currentUser,
-            redirect: '/demo-dating-app-frontend/users',
+            redirect: '/users',
             users: users
         })
     }
@@ -202,7 +202,7 @@ class App extends Component {
         this.setState({
             isLogIn: false,
             currentUser: '',
-            redirect: '/demo-dating-app-frontend',
+            redirect: '/',
             users: []
         })
     }
