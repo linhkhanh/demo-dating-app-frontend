@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from './Title';
 import LogIn from './Login';
-import Signup from './SignUp';
+import SignUp from './SignUp';
 import ListUsers from './ListUsers';
 
 import {
@@ -18,7 +18,7 @@ class Header extends React.Component {
             <Router>
                 <div className="header">
                     <div>
-                        <h1><Link to="/demo-dating-app-frontend"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <h1><Link to='/demo-dating-app-frontend'><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M8 1.314C3.562-3.248-7.534 4.735 8 15V1.314z" />
                             <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                         </svg> &nbsp;
@@ -31,11 +31,11 @@ class Header extends React.Component {
                             <li><a href="#">ABOUT US</a></li>
                             <li><a href="#">SAY HELLO</a></li>
                             <li><a href="#">FAQ</a></li>
-                            <li><Link to="/users">USERS</Link></li>
+                            <li><Link to='/demo-dating-app-frontend/users'>USERS</Link></li>
                             {!this.props.isLogIn ?
                                 <React.Fragment>
-                                    <li><Link to="/login">LOG IN</Link></li>
-                                    <li><Link to="/signup">SIGNUP</Link></li>
+                                    <li><Link to='/demo-dating-app-frontend/login'>LOG IN</Link></li>
+                                    <li><Link to='/demo-dating-app-frontend/signup'>SIGNUP</Link></li>
                                 </React.Fragment>
                                 : <React.Fragment>
                                     <li>{this.props.currentUserName}</li>
@@ -47,10 +47,10 @@ class Header extends React.Component {
                     </nav>
                 </div>
                 <Switch>
-                    <Route path="/demo-dating-app-frontend">
-                        <Title />
-                    </Route>
-                    <Route path="/login">
+                
+                    <Route exact path="/demo-dating-app-frontend" component={Title} />
+                   
+                    <Route path="/demo-dating-app-frontend/login">
                         <LogIn
                             redirect={this.props.redirect}
                             currentEmail={this.props.currentEmail}
@@ -59,8 +59,8 @@ class Header extends React.Component {
                             logIn={this.props.logIn}
                            />
                     </Route>
-                    <Route path="/signup">
-                        <Signup
+                    <Route path="/demo-dating-app-frontend/signup">
+                        <SignUp
                             redirect={this.props.redirect}
                             userName={this.props.userName}
                             email={this.props.email} age={this.props.age}
@@ -81,12 +81,14 @@ class Header extends React.Component {
                             toggleGender={this.props.toggleGender}
                             toggleLookingForGender={this.props.toggleLookingForGender} />
                     </Route>
-                    {/* ALL USERS */}
-                    <Route path="/users">
+                {/* ALL USERS */}
+                <Route path="/demo-dating-app-frontend/users">
                         <ListUsers users={this.props.users} delete={this.props.delete} isLogIn={this.props.isLogIn}/>
                     </Route>
 
                 </Switch>
+
+                
             </Router>
         )
     }
