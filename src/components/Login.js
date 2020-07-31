@@ -6,7 +6,7 @@ class Login extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.props.redirect !== "/users" ?
+                {!this.props.isLogIn ?
                     <Form className="login" onSubmit={this.props.logIn}>
                         <h2 className="text-center h2">LOG IN</h2>
                         <Form.Group as={Row}>
@@ -30,7 +30,7 @@ class Login extends Component {
                         <Form.Group className="text-center">
                             <Button type="submit" variant="primary">Log in</Button>
                         </Form.Group>
-
+                <p>{this.props.err}</p>
                     </Form> : <Redirect to={this.props.redirect} />
                 }
 
