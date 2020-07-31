@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/demo-dating-app-frontend/static/css/main.2dcc7aca.chunk.css",
-    "main.js": "/demo-dating-app-frontend/static/js/main.b446b387.chunk.js",
-    "main.js.map": "/demo-dating-app-frontend/static/js/main.b446b387.chunk.js.map",
+    "main.js": "/demo-dating-app-frontend/static/js/main.aa51da28.chunk.js",
+    "main.js.map": "/demo-dating-app-frontend/static/js/main.aa51da28.chunk.js.map",
     "runtime-main.js": "/demo-dating-app-frontend/static/js/runtime-main.0a86c614.js",
     "runtime-main.js.map": "/demo-dating-app-frontend/static/js/runtime-main.0a86c614.js.map",
     "static/js/2.01a20b5f.chunk.js": "/demo-dating-app-frontend/static/js/2.01a20b5f.chunk.js",
     "static/js/2.01a20b5f.chunk.js.map": "/demo-dating-app-frontend/static/js/2.01a20b5f.chunk.js.map",
     "index.html": "/demo-dating-app-frontend/index.html",
-    "precache-manifest.3bf515efca25c7ab252efcf8bd271be4.js": "/demo-dating-app-frontend/precache-manifest.3bf515efca25c7ab252efcf8bd271be4.js",
+    "precache-manifest.63072abfa6aa5ee80b85c8dd345c862c.js": "/demo-dating-app-frontend/precache-manifest.63072abfa6aa5ee80b85c8dd345c862c.js",
     "service-worker.js": "/demo-dating-app-frontend/service-worker.js",
     "static/css/main.2dcc7aca.chunk.css.map": "/demo-dating-app-frontend/static/css/main.2dcc7aca.chunk.css.map",
     "static/js/2.01a20b5f.chunk.js.LICENSE.txt": "/demo-dating-app-frontend/static/js/2.01a20b5f.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0a86c614.js",
     "static/js/2.01a20b5f.chunk.js",
     "static/css/main.2dcc7aca.chunk.css",
-    "static/js/main.b446b387.chunk.js"
+    "static/js/main.aa51da28.chunk.js"
   ]
 }
