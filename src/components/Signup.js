@@ -1,10 +1,12 @@
 import React from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
+
 class SignUp extends React.Component {
     render() {
         return (
             <div>
-                {!this.props.isLogIn ?
+                {this.props.redirect === "/demo-dating-app-frontend" ?
                     <Form onSubmit={this.props.handleSubmit} id="signup">
                         <h2 className="text-center h2">CREATE NEW ACCOUNT</h2>
 
@@ -39,7 +41,7 @@ class SignUp extends React.Component {
                                             return (
                                                 <option>{country.name}</option>
                                             )
-                                        }) : ''}
+                                        }) :  ''}
                                 </datalist>
                             </Col>
                         </Form.Group>
@@ -85,13 +87,12 @@ class SignUp extends React.Component {
                         </Form.Group>
 
                         <Form.Group className="text-center">
-                            <Button variant="primary" type="submit">
-                                Submit
-</Button>
+                                <Button variant="primary" type="submit"> Submit</Button>
+
                         </Form.Group>
 
                     </Form>
-                    : ''
+                    : <Redirect to={this.props.redirect} />
                 }
 
             </div>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Form, Col, Row, Button } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
     render() {
         return (
             <React.Fragment>
-                {!this.props.isLogIn ?
+                {this.props.redirect != "/users" ?
                     <Form className="login" onSubmit={this.props.logIn}>
                         <h2 className="text-center h2">LOG IN</h2>
                         <Form.Group as={Row}>
@@ -30,7 +31,7 @@ class Login extends Component {
                             <Button type="submit" variant="primary">Log in</Button>
                         </Form.Group>
 
-                    </Form> : ''
+                    </Form> : <Redirect to={this.props.redirect} />
                 }
 
 

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+
 class Table extends Component {
     render() {
         return (
             <div>
                 <h1 className="text-center">All users</h1>
-                {this.props.users ?
+                {this.props.isLogIn ?
                     <div className="list">
                         {this.props.users.map((user, index) => {
                             return (
@@ -36,7 +38,7 @@ class Table extends Component {
                             )
                         })}
                     </div>
-                    : <p>Loading ...</p>
+                    : <Redirect to='/login' />
                 }
             </div>
         )

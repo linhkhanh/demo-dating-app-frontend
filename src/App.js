@@ -25,6 +25,8 @@ class App extends Component {
             lookingForMale: false,
             lookingForAgeFrom: 18,
             lookingForAgeTo: 30,
+
+            redirect: '/demo-dating-app-frontend',
             // authentication
             currentEmail: '',
             currentPassword: '',
@@ -89,7 +91,8 @@ class App extends Component {
             location: '',
             password: '',
             female: false,
-            male: true
+            male: true,
+            redirect: '/login'
         });
     }
 
@@ -190,6 +193,7 @@ class App extends Component {
             currentPassword: '',
             isLogIn: true,
             currentUser: currentUser,
+            redirect: '/users',
             users: users
         })
     }
@@ -199,6 +203,7 @@ class App extends Component {
         this.setState({
             isLogIn: false,
             currentUser: '',
+            redirect: '/demo-dating-app-frontend',
             users: []
         })
     }
@@ -229,7 +234,8 @@ class App extends Component {
         const { userName, email, age, location,
             image, password, female, male, countries,
             lookingForAgeFrom, lookingForAgeTo, lookingForFemale,
-            lookingForMale, currentEmail, currentPassword, isLogIn, currentUser } = this.state;
+            lookingForMale, currentEmail, currentPassword, isLogIn,
+             currentUser, redirect } = this.state;
         return (
             <React.Fragment >
 
@@ -242,6 +248,7 @@ class App extends Component {
                     currentPassword={currentPassword}
                     logIn={this.logIn}
                    
+                    redirect={redirect}
                     userName={userName}
                     email={email} age={age}
                     location={location} image={image}
@@ -258,13 +265,12 @@ class App extends Component {
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     toggleGender={this.toggleGender}
-                    toggleForLookingGender={this.toggleLookingForGender}
+                    toggleLookingForGender={this.toggleLookingForGender}
+
+                    users={this.state.users}
+                    delete={this.deleteData}
                 />
                
-              
-
-                {/* ALL USERS */}
-                <ListUsers users={this.state.users} delete={this.deleteData} />
 
                 <Footer />
             </React.Fragment >

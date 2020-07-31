@@ -82,6 +82,7 @@ nav {
 /* list User */
 .card {
   width: 30%;
+  color: black;
 }
 .list {
   display: flex;
@@ -92,10 +93,10 @@ nav {
 /* footer */
 .footer {
   text-align: center;
-  color: rgb(106, 139, 106);
+  color: rgb(99, 77, 8);
   margin-top: 3%;
   font-weight: lighter;
   font-size: 17px;
-  border-top: 2px solid green;
+  border-top: 2px solid rgb(117, 99, 19);
   padding: 1%;
 }
