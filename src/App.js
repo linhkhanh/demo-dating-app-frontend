@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import TopPage from './components/TopPage';
 
-import ListUsers from './components/ListUsers';
 import Footer from './components/Footer';
 import usersService from './services/usersService';
 import sessionService from './services/session';
@@ -92,7 +91,7 @@ class App extends Component {
             password: '',
             female: false,
             male: true,
-            redirect: '/login'
+            redirect: '/demo-dating-app-frontend/login'
         });
     }
 
@@ -193,7 +192,7 @@ class App extends Component {
             currentPassword: '',
             isLogIn: true,
             currentUser: currentUser,
-            redirect: '/users',
+            redirect: '/demo-dating-app-frontend/users',
             users: users
         })
     }

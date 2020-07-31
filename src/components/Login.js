@@ -6,7 +6,7 @@ class Login extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.props.redirect != "/users" ?
+                {this.props.redirect !== "/demo-dating-app-frontend/users" ?
                     <Form className="login" onSubmit={this.props.logIn}>
                         <h2 className="text-center h2">LOG IN</h2>
                         <Form.Group as={Row}>

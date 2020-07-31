@@ -38,7 +38,7 @@ class Table extends Component {
                             )
                         })}
                     </div>
-                    : <Redirect to='/login' />
+                    : <Redirect to='/demo-dating-app-frontend/login' />
                 }
             </div>
         )
