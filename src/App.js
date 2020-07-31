@@ -31,6 +31,7 @@ class App extends Component {
             currentPassword: '',
             currentUser: '',
             isLogIn: false,
+            err: '',
             users: []
         }
     }
@@ -161,6 +162,13 @@ class App extends Component {
     // Show data
     componentDidMount() {
         this.getAllCountries();
+        if (localStorage.getItem('isLogIn')) {
+            this.fetchUsers();
+            const currentUser = localStorage.getItem('currentUser');  
+            this.setState({
+                currentUser: JSON.parse(currentUser)
+            }) 
+        }   
     }
 
     // delete data
@@ -185,20 +193,34 @@ class App extends Component {
             password: this.state.currentPassword
         };
         const currentUser = await sessionService.logIn(user);
-     
-        const users = await this.fetchUsers();
-        this.setState({
-            currentEmail: '',
-            currentPassword: '',
-            isLogIn: true,
-            currentUser: currentUser,
-            redirect: '/users',
-            users: users
-        })
+        if (!currentUser.err) {
+            const users = await this.fetchUsers();
+
+            // set local storage
+            localStorage.setItem('isLogIn', true);
+          
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            this.setState({
+                currentEmail: '',
+                currentPassword: '',
+                isLogIn: true,
+                currentUser: currentUser,
+                redirect: '/users',
+                users: users
+            })
+        } else {
+            this.setState({
+                err: currentUser.err
+            })
+        }
+
     }
 
     logOut = async () => {
         await sessionService.logOut();
+        // reset localStoreage
+        localStorage.clear();
         this.setState({
             isLogIn: false,
             currentUser: '',
@@ -234,19 +256,20 @@ class App extends Component {
             image, password, female, male, countries,
             lookingForAgeFrom, lookingForAgeTo, lookingForFemale,
             lookingForMale, currentEmail, currentPassword, isLogIn,
-             currentUser, redirect } = this.state;
+            currentUser, redirect, err } = this.state;
         return (
             <React.Fragment >
 
                 {/* Top Page */}
-                <TopPage 
+                <TopPage
                     isLogIn={isLogIn}
                     currentUserName={currentUser.userName}
                     logOut={this.logOut}
                     currentEmail={currentEmail}
                     currentPassword={currentPassword}
                     logIn={this.logIn}
-                   
+                    err={err}
+
                     redirect={redirect}
                     userName={userName}
                     email={email} age={age}
@@ -269,7 +292,7 @@ class App extends Component {
                     users={this.state.users}
                     delete={this.deleteData}
                 />
-               
+
 
                 <Footer />
             </React.Fragment >

@@ -5,12 +5,17 @@ const buildUrl = apiPath => {
 };
 
 export default {
-    async logIn (user) {
-        const response = await apiUtil.post(buildUrl('/login_submit'), user);
-        console.log(response.data);
-        return response.data;
+    async logIn(user) {
+        try {
+            const response = await apiUtil.post(buildUrl('/login_submit'), user);
+            console.log(response.data);
+            return response.data;
+        } catch(err) {
+            console.log(err)
+        }
+        
     },
-    async logOut () {
+    async logOut() {
         try {
             const response = await apiUtil.get(buildUrl('/logout'));
             return response.data;

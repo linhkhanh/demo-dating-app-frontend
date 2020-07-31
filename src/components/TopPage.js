@@ -14,6 +14,7 @@ class TopPage extends React.Component {
                     currentPassword={this.props.currentPassword}
                     handleChange={this.props.handleChange}
                     logIn={this.props.logIn}
+                    err={this.props.err}
 
                     userName={this.props.userName}
                     email={this.props.email} age={this.props.age}
@@ -33,7 +34,9 @@ class TopPage extends React.Component {
                     toggleLookingForGender={this.props.toggleLookingForGender}
 
                     users={this.props.users} 
-                    delete={this.props.delete} />
+                    delete={this.props.delete} 
+                    
+                    />
             </div>
         )
     }

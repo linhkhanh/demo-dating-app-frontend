@@ -1,7 +1,7 @@
 import React from 'react';
 import Title from './Title';
 import LogIn from './Login';
-import SignUp from './SignUp';
+import SignUp from './Signup';
 import ListUsers from './ListUsers';
 
 import { HashRouter, Route, Link } from "react-router-dom";
@@ -27,7 +27,7 @@ class Header extends React.Component {
                             <li><a href="#">SAY HELLO</a></li>
                             <li><a href="#">FAQ</a></li>
                             <li><Link to='/users'>USERS</Link></li>
-                            {!this.props.isLogIn ?
+                            {!localStorage.getItem('isLogIn')?
                                 <React.Fragment>
                                     <li><Link to='/login'>LOG IN</Link></li>
                                     <li><Link to='/signup'>SIGNUP</Link></li>
@@ -52,6 +52,8 @@ class Header extends React.Component {
                             currentPassword={this.props.currentPassword}
                             handleChange={this.props.handleChange}
                             logIn={this.props.logIn}
+                            isLogIn={this.props.isLogIn}
+                            err={this.props.err}
                            />
                     </Route>
                     <Route path="/signup">
