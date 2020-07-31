@@ -1,12 +1,14 @@
 import React from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
+
 class SignUp extends React.Component {
     render() {
         return (
-            <div className='signup'>
-                {!this.props.isLogIn ?
-                    <Form onSubmit={this.props.handleSubmit} id="signup" >
-                        <h2 className="text-center">CREATE NEW ACCOUNT</h2>
+            <div>
+                {this.props.redirect === "/demo-dating-app-frontend" ?
+                    <Form onSubmit={this.props.handleSubmit} id="signup">
+                        <h2 className="text-center h2">CREATE NEW ACCOUNT</h2>
 
                         <Form.Group as={Row}>
                             <Form.Label column sm={4}>Email</Form.Label>
@@ -39,7 +41,7 @@ class SignUp extends React.Component {
                                             return (
                                                 <option>{country.name}</option>
                                             )
-                                        }) : ''}
+                                        }) :  ''}
                                 </datalist>
                             </Col>
                         </Form.Group>
@@ -84,21 +86,16 @@ class SignUp extends React.Component {
                             </Col>
                         </Form.Group>
 
-                        <Form.Group>
-                            <Button variant="primary" type="submit">
-                                Submit
-                    </Button>
+                        <Form.Group className="text-center">
+                                <Button variant="primary" type="submit"> Submit</Button>
+
                         </Form.Group>
 
                     </Form>
-                    : ''
+                    : <Redirect to={this.props.redirect} />
                 }
 
-                <div className="title">
-                    <h2>FIND YOUR LOVE</h2>
-                </div>
             </div>
-
         )
     }
 }

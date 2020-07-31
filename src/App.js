@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import Header from './components/Header';
-import Signup from './components/Signup';
-import Login from './components/Login';
+import TopPage from './components/TopPage';
+
 import ListUsers from './components/ListUsers';
 import Footer from './components/Footer';
 import usersService from './services/usersService';
@@ -26,6 +25,8 @@ class App extends Component {
             lookingForMale: false,
             lookingForAgeFrom: 18,
             lookingForAgeTo: 30,
+
+            redirect: '/demo-dating-app-frontend',
             // authentication
             currentEmail: '',
             currentPassword: '',
@@ -80,7 +81,7 @@ class App extends Component {
         newOne.position = this.state.position; // add user's position
 
         // add newData to db
-        const newData = await usersService.create(newOne);
+        await usersService.create(newOne);
 
         this.setState({
             email: '',
@@ -90,7 +91,8 @@ class App extends Component {
             location: '',
             password: '',
             female: false,
-            male: true
+            male: true,
+            redirect: '/login'
         });
     }
 
@@ -191,6 +193,7 @@ class App extends Component {
             currentPassword: '',
             isLogIn: true,
             currentUser: currentUser,
+            redirect: '/users',
             users: users
         })
     }
@@ -200,6 +203,7 @@ class App extends Component {
         this.setState({
             isLogIn: false,
             currentUser: '',
+            redirect: '/demo-dating-app-frontend',
             users: []
         })
     }
@@ -230,44 +234,43 @@ class App extends Component {
         const { userName, email, age, location,
             image, password, female, male, countries,
             lookingForAgeFrom, lookingForAgeTo, lookingForFemale,
-            lookingForMale, currentEmail, currentPassword, isLogIn } = this.state;
+            lookingForMale, currentEmail, currentPassword, isLogIn,
+             currentUser, redirect } = this.state;
         return (
             <React.Fragment >
-                <Header userName={this.state.currentUser.userName}
-                    isLogIn={this.state.isLogIn}
-                    logOut={this.logOut}
-                />
 
-                {/* SIGN UP */}
-                <Signup userName={userName}
+                {/* Top Page */}
+                <TopPage 
+                    isLogIn={isLogIn}
+                    currentUserName={currentUser.userName}
+                    logOut={this.logOut}
+                    currentEmail={currentEmail}
+                    currentPassword={currentPassword}
+                    logIn={this.logIn}
+                   
+                    redirect={redirect}
+                    userName={userName}
                     email={email} age={age}
                     location={location} image={image}
                     password={password}
                     female={female}
                     male={male}
                     countries={countries}
+
                     lookingForAgeFrom={lookingForAgeFrom}
                     lookingForAgeTo={lookingForAgeTo}
                     lookingForFemale={lookingForFemale}
                     lookingForMale={lookingForMale}
-                    isLogIn={isLogIn}
 
                     handleChange={this.handleChange}
-                    toggleGender={this.toggleGender}
                     handleSubmit={this.handleSubmit}
+                    toggleGender={this.toggleGender}
                     toggleLookingForGender={this.toggleLookingForGender}
-                />
 
-                {/* LOG IN */}
-                <Login currentEmail={currentEmail}
-                    currentPassword={currentPassword}
-                    handleChange={this.handleChange}
-                    logIn={this.logIn}
-                    isLogIn={isLogIn}
+                    users={this.state.users}
+                    delete={this.deleteData}
                 />
-
-                {/* ALL USERS */}
-                <ListUsers users={this.state.users} delete={this.deleteData} />
+               
 
                 <Footer />
             </React.Fragment >
