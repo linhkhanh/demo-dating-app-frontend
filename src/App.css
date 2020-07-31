@@ -11,11 +11,11 @@ h1 {
 }
 .header {
   padding: 3%;
-  color: green;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   font-family: 'Barlow Condensed', sans-serif;
+
 }
 
 ul > li {
@@ -25,7 +25,7 @@ ul > li {
 }
 
 ul > li > a {
-  color: green;
+  color: white;
 }
 
 nav {
@@ -35,29 +35,37 @@ nav {
 }
 /* end */
 
-/* form */
-.signup {
-  background-image: url('https://miro.medium.com/max/3760/1*OEnS6-DEn56szCwdOs2mrA.jpeg');
+/* top-page */
+.top-page {
+  background-image: url('https://auracle.app/wp-content/uploads/2020/03/scott-broome-BcVvVvqiCGA-unsplash-scaled-e1585640369400.jpg');
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* */
   color: #fffdfb;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  padding: 8%;
-  margin-bottom: 2%;
+  opacity: 0.7;
+  min-height: 500px;
+  padding-bottom: 5%;
 }
 
-#signup {
+/* form Signup, login*/
+
+#signup, .login {
   width: 50%;
+  margin: auto;
+  border: 3px solid white;
+  padding: 2%;
+  border-radius: 20px;
 }
 
-.title {
-  width: fit-content; 
-  display: flex;
-  align-items: flex-end;
+.h2 {
   font-weight: bolder;
+}
+/* Title */
+.title {
+  width: fit-content;
+  margin: 10% 40%;
+  text-align: center;
+
 }
 
 .title > h2 {
@@ -70,6 +78,8 @@ nav {
 }
 
 
+
+/* list User */
 .card {
   width: 30%;
 }
@@ -78,6 +88,7 @@ nav {
   flex-flow: row wrap;
   justify-content: center;
 }
+
 /* footer */
 .footer {
   text-align: center;

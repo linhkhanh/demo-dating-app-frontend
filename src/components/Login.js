@@ -6,8 +6,8 @@ class Login extends Component {
         return (
             <React.Fragment>
                 {!this.props.isLogIn ?
-                    <Form className="card" id="login" onSubmit={this.props.logIn}>
-                        <h2 className="text-center">LOG IN</h2>
+                    <Form className="login" onSubmit={this.props.logIn}>
+                        <h2 className="text-center h2">LOG IN</h2>
                         <Form.Group as={Row}>
                             <Form.Label column sm="4">
                                 Email
@@ -25,7 +25,11 @@ class Login extends Component {
                                 <Form.Control type="password" id="currentPassword" placeholder="Password" valuse={this.props.currentPassword} onChange={this.props.handleChange} required />
                             </Col>
                         </Form.Group>
-                        <Button type="submit" variant="primary">Log in</Button>
+
+                        <Form.Group className="text-center">
+                            <Button type="submit" variant="primary">Log in</Button>
+                        </Form.Group>
+
                     </Form> : ''
                 }
 

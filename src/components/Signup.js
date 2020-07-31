@@ -3,10 +3,10 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 class SignUp extends React.Component {
     render() {
         return (
-            <div className='signup'>
+            <div>
                 {!this.props.isLogIn ?
-                    <Form onSubmit={this.props.handleSubmit} id="signup" >
-                        <h2 className="text-center">CREATE NEW ACCOUNT</h2>
+                    <Form onSubmit={this.props.handleSubmit} id="signup">
+                        <h2 className="text-center h2">CREATE NEW ACCOUNT</h2>
 
                         <Form.Group as={Row}>
                             <Form.Label column sm={4}>Email</Form.Label>
@@ -84,21 +84,17 @@ class SignUp extends React.Component {
                             </Col>
                         </Form.Group>
 
-                        <Form.Group>
+                        <Form.Group className="text-center">
                             <Button variant="primary" type="submit">
                                 Submit
-                    </Button>
+</Button>
                         </Form.Group>
 
                     </Form>
                     : ''
                 }
 
-                <div className="title">
-                    <h2>FIND YOUR LOVE</h2>
-                </div>
             </div>
-
         )
     }
 }
