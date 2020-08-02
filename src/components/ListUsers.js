@@ -6,7 +6,7 @@ class Table extends Component {
         return (
             <div>
                 <h1 className="text-center">All users</h1>
-                {localStorage.getItem('isLogIn') ?
+                {this.props.isLogIn ?
                     <div className="list">
                         {this.props.users.map((user, index) => {
                             return (

@@ -8,7 +8,6 @@ export default {
     async logIn(user) {
         try {
             const response = await apiUtil.post(buildUrl('/login_submit'), user);
-            console.log(response.data);
             return response.data;
         } catch(err) {
             console.log(err)
@@ -23,4 +22,12 @@ export default {
             console.log(err);
         }
     },
+    async checkAuthentication () {
+        try {
+            const response = await apiUtil.get(buildUrl('/check_authentication'));
+            return response.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
 };

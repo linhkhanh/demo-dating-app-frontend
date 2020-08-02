@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Col, Row, Button } from 'react-bootstrap';
+import { Form, Col, Row, Button, Alert } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 class Login extends Component {
@@ -30,7 +30,11 @@ class Login extends Component {
                         <Form.Group className="text-center">
                             <Button type="submit" variant="primary">Log in</Button>
                         </Form.Group>
-                <p>{this.props.err}</p>
+                        {this.props.err ?
+                            <Alert variant='danger'>
+                                {this.props.err}
+                            </Alert> : ''}
+
                     </Form> : <Redirect to={this.props.redirect} />
                 }
 

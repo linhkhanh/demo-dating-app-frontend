@@ -27,7 +27,7 @@ class Header extends React.Component {
                             <li><a href="#">SAY HELLO</a></li>
                             <li><a href="#">FAQ</a></li>
                             <li><Link to='/users'>USERS</Link></li>
-                            {!localStorage.getItem('isLogIn')?
+                            {!this.props.isLogIn ?
                                 <React.Fragment>
                                     <li><Link to='/login'>LOG IN</Link></li>
                                     <li><Link to='/signup'>SIGNUP</Link></li>

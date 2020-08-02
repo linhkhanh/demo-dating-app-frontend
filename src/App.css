@@ -52,9 +52,10 @@ nav {
 #signup, .login {
   width: 50%;
   margin: auto;
-  border: 3px solid white;
   padding: 2%;
   border-radius: 20px;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); 
 }
 
 .h2 {
