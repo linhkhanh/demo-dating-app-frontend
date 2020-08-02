@@ -159,16 +159,23 @@ class App extends Component {
             countries: allCountries
         })
     }
-    // Show data
-    componentDidMount() {
-        this.getAllCountries();
-        if (localStorage.getItem('isLogIn')) {
+
+    // CHECK AUTHENTICATION
+    checkAuthentication = async () => {
+        const result = await sessionService.checkAuthentication();
+        if (result.isLogIn) {
             this.fetchUsers();
-            const currentUser = localStorage.getItem('currentUser');  
+            const currentUser = localStorage.getItem('currentUser');
             this.setState({
+                isLogIn: true,
                 currentUser: JSON.parse(currentUser)
-            }) 
-        }   
+            })
+        }
+    }
+    // WHEN PAGE IS LOADED
+    componentDidMount() {
+        this.checkAuthentication();
+        this.getAllCountries();
     }
 
     // delete data
@@ -197,8 +204,6 @@ class App extends Component {
             const users = await this.fetchUsers();
 
             // set local storage
-            localStorage.setItem('isLogIn', true);
-          
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
             this.setState({
@@ -225,9 +230,11 @@ class App extends Component {
             isLogIn: false,
             currentUser: '',
             redirect: '/',
+            err: '',
             users: []
         })
     }
+
     // CALCULATE DISTANCE
     distance(lat1, lon1, lat2, lon2, unit) {
         if ((lat1 === lat2) && (lon1 === lon2)) {
