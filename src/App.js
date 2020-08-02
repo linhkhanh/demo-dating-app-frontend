@@ -258,6 +258,12 @@ class App extends Component {
         }
     }
 
+    likeUser = async(event) => {
+        const likedUserId = event.currentTarget.getAttribute('a-key');
+        const currentUserId = JSON.parse(localStorage.getItem('currentUser'))
+        console.log(`${currentUserId._id} likes ${likedUserId} `);
+        await usersService.likeUser(currentUserId._id, likedUserId);
+    }
     render() {
         const { userName, email, age, location,
             image, password, female, male, countries,
@@ -298,6 +304,7 @@ class App extends Component {
 
                     users={this.state.users}
                     delete={this.deleteData}
+                    likeUser={this.likeUser}
                 />
 
 

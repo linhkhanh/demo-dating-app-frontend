@@ -34,5 +34,11 @@ export default {
     async uploadImage (formData) {
         const response = await imageApiUtil.post(buildUrl('/avatar-upload'), formData);
         return response.data;
+    },
+    async likeUser (currentUserId, likedUserId) {
+        const response = await apiUtil.update(buildUrl(`/like/${currentUserId}`), 
+            { _id: likedUserId}
+        );
+        return response.data;
     }
 };
