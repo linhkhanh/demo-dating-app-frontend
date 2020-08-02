@@ -80,7 +80,12 @@ class Header extends React.Component {
                     </Route>
                 {/* ALL USERS */}
                 <Route path="/users">
-                        <ListUsers users={this.props.users} delete={this.props.delete} isLogIn={this.props.isLogIn}/>
+                        <ListUsers 
+                            users={this.props.users} 
+                            delete={this.props.delete} 
+                            isLogIn={this.props.isLogIn}
+                            likeUser={this.props.likeUser}
+                            />
                     </Route>
                 
                 </HashRouter>
