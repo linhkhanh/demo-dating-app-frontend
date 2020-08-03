@@ -115,6 +115,10 @@ nav {
   padding: 0px;
 }
 
+.user-navigation-icons a {
+  color: white;
+}
+
 /* footer */
 .footer {
   text-align: center;
