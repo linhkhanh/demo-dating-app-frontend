@@ -3,6 +3,7 @@ import Title from './Title';
 import LogIn from './Login';
 import SignUp from './Signup';
 import ListUsers from './ListUsers';
+import UserNavigation from './UserNavigation';
 
 import { HashRouter, Route, Link } from "react-router-dom";
 
@@ -80,12 +81,14 @@ class Header extends React.Component {
                     </Route>
                 {/* ALL USERS */}
                 <Route path="/users">
+                        <UserNavigation username={this.props.currentUserName}/>
                         <ListUsers 
                             users={this.props.users} 
                             delete={this.props.delete} 
                             isLogIn={this.props.isLogIn}
                             likeUser={this.props.likeUser}
                             />
+                        
                     </Route>
                 
                 </HashRouter>

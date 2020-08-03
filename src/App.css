@@ -78,8 +78,6 @@ nav {
   font-weight: bolder;
 }
 
-
-
 /* list User */
 .card {
   width: 30%;
@@ -89,6 +87,32 @@ nav {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+
+.user-navigation {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.user-navigation > h1 {
+  text-align: center;
+}
+
+.user-navigation {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  
+}
+
+.user-navigation-icons ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0px;
 }
 
 /* footer */
