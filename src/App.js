@@ -32,7 +32,10 @@ class App extends Component {
             currentUser: '',
             isLogIn: false,
             err: '',
-            users: []
+            users: [],
+
+            // main page
+            foundUsers: 0
         }
     }
 
@@ -145,8 +148,15 @@ class App extends Component {
     //  Fetch Users
     fetchUsers = async () => {
         const users = await usersService.getAll();
-        this.setState({ users: users });
-        return users;
+        const filterdUsers = users.filter(user => user.gender === this.state.currentUser.lookingForGender 
+            && user.age >= this.state.currentUser.lookingForAgeFrom 
+            && user.age <= this.state.currentUser.lookingForAgeTo)
+        this.setState({ 
+            users: filterdUsers,
+            foundUsers: filterdUsers.length
+        });
+      
+        return filterdUsers;
     }
 
     // Get all countries
@@ -162,14 +172,14 @@ class App extends Component {
 
     // CHECK AUTHENTICATION
     checkAuthentication = async () => {
-        const result = await sessionService.checkAuthentication();
+        const result = await sessionService.checkAuthentication(); // check user loged in or not
         if (result.isLogIn) {
-            this.fetchUsers();
             const currentUser = localStorage.getItem('currentUser');
             this.setState({
                 isLogIn: true,
                 currentUser: JSON.parse(currentUser)
             })
+            this.fetchUsers();
         }
     }
     // WHEN PAGE IS LOADED
@@ -201,8 +211,6 @@ class App extends Component {
         };
         const currentUser = await sessionService.logIn(user);
         if (!currentUser.err) {
-            const users = await this.fetchUsers();
-
             // set local storage
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
@@ -212,8 +220,8 @@ class App extends Component {
                 isLogIn: true,
                 currentUser: currentUser,
                 redirect: '/users',
-                users: users
             })
+            await this.fetchUsers();
         } else {
             this.setState({
                 err: currentUser.err
@@ -231,6 +239,7 @@ class App extends Component {
             currentUser: '',
             redirect: '/',
             err: '',
+            foundUsers: 0,
             users: []
         })
     }
@@ -258,18 +267,12 @@ class App extends Component {
         }
     }
 
-    likeUser = async(event) => {
-        const likedUserId = event.currentTarget.getAttribute('a-key');
-        const currentUserId = JSON.parse(localStorage.getItem('currentUser'))
-        console.log(`${currentUserId._id} likes ${likedUserId} `);
-        await usersService.likeUser(currentUserId._id, likedUserId);
-    }
     render() {
         const { userName, email, age, location,
             image, password, female, male, countries,
             lookingForAgeFrom, lookingForAgeTo, lookingForFemale,
             lookingForMale, currentEmail, currentPassword, isLogIn,
-            currentUser, redirect, err } = this.state;
+            currentUser, redirect, err, foundUsers } = this.state;
         return (
             <React.Fragment >
 
@@ -304,7 +307,7 @@ class App extends Component {
 
                     users={this.state.users}
                     delete={this.deleteData}
-                    likeUser={this.likeUser}
+                    foundUsers={foundUsers}
                 />
 
 

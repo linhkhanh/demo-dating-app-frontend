@@ -85,6 +85,7 @@ class Header extends React.Component {
                             delete={this.props.delete} 
                             isLogIn={this.props.isLogIn}
                             likeUser={this.props.likeUser}
+                            foundUsers={this.props.foundUsers}
                             />
                     </Route>
                 

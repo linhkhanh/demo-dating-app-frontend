@@ -5,7 +5,7 @@ class Table extends Component {
     render() {
         return (
             <div>
-                <h1 className="text-center">All users</h1>
+                <h1 className="text-center">{this.props.foundUsers} users found</h1>
                 {this.props.isLogIn ?
                     <div className="list">
                         {this.props.users.map((user, index) => {

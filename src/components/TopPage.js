@@ -36,6 +36,7 @@ class TopPage extends React.Component {
                     users={this.props.users} 
                     delete={this.props.delete} 
                     likeUser={this.props.likeUser}
+                    foundUsers={this.props.foundUsers}
                     />
             </div>
         )
